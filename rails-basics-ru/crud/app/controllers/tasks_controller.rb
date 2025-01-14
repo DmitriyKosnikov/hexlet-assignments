@@ -16,7 +16,7 @@ class TasksController < ApplicationController
 
     if @task.save
       #flash[:success] = 'Новая задача успешно создана!'
-      redirect_to task_path(@task)
+      redirect_to @task
     else
       flash.now[:alert] = @task.errors.full_messages.join(", ")
       render :new, status: :unprocessable_entity
@@ -32,7 +32,7 @@ class TasksController < ApplicationController
 
     if @task.update(task_params)
       flash[:success] = 'задача успешно изменена'
-      redirect_to task_url(@task)
+      redirect_to @task
     else
       flash[:failure] = 'Не получается сохранить изменения'
       render :edit, status: :unprocessable_entity
