@@ -1,0 +1,8 @@
+h1 Task № #{@task.id}
+p= @task.name
+p= @task.status
+p= @task.creator
+p= @task.completed
+p= link_to "Back", tasks_path
+p= link_to "Edit", edit_task_path(@task)
+p= link_to "Delete", task_path(@task), data: { "turbo-method": :delete, "turbo-confirm": 'Are you sure?'}
