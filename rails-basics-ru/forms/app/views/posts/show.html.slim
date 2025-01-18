@@ -1,0 +1,7 @@
+h1 Post № #{@post.id}
+p Title: #{@post.title}
+p Body: #{@post.body}
+p Summary: #{@post.summary}
+p Published: #{@post.published}
+
+p= link_to "Edit", edit_post_path(@post)

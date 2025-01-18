@@ -1,0 +1,9 @@
+h1 Posts
+= link_to "New", new_post_path
+hr
+    - @posts.each do |post|
+        div
+        h4= link_to post.title, post
+        p= post.summary
+        p= post.published ? "Published":"Not published"
+        hr
