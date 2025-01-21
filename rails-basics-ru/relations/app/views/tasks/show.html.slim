@@ -1,0 +1,6 @@
+- content_for :title do
+    = @task.name
+
+p Description: #{@task.description}
+p User: #{link_to @task.user.name, user_path(@task.user)}
+p Status: #{@task.status.name}
