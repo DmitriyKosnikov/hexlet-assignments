@@ -1,0 +1,18 @@
+- content_for :title do
+  = @post.title
+p
+  strong.me-2 Body:
+  = @post.body
+
+= link_to "New comment", new_post_post_comment_path(@post), class: 'btn btn-outline-primary'
+- @post.post_comments.each do |comment|
+  hr
+    p= comment.body
+    .d-flex
+      = link_to "Edit", edit_post_post_comment_path(@post, comment), class: 'btn btn-outline-primary me-2'
+      = link_to 'Delete', post_post_comment_path(@post, comment), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-outline-primary'
+hr
+
+.d-flex
+  = link_to 'Edit', edit_post_path(@post), class: 'btn btn-outline-primary me-2'
+  = link_to 'Back', :back, class: 'btn btn-outline-primary'
