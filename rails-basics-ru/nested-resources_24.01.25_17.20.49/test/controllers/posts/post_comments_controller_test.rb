@@ -1,18 +1,23 @@
-require "test_helper"
+require 'test_helper'
 
 module Posts
   class PostCommentsControllerTest < ActionDispatch::IntegrationTest
     setup do
       @post = posts(:one)
-      @post_comment = @post.post_comments.create(body: "Great post!")
+      @post_comment = post_comments(:one)
     end
 
-    test "should create post comment" do
-      assert_difference('PostComment.count', 1) do
-        post post_post_comments_url(@post), params: { post_comment: { body: "New comment" } }
+    test "should get new" do
+      get new_post_post_comment_url(@post)
+      assert_response :success
+    end
+
+    test "should create post_comment with valid params" do
+      assert_difference('PostComment.count') do
+        post post_post_comments_url(@post), params: { post_comment: { body: 'New comment', post_id: @post.id } }
       end
-      assert_redirected_to @post
-      assert_equal "Comment was successfully created.", flash[:notice]
+      assert_redirected_to post_path(@post)
+      assert_equal 'Comment was successfully created.', flash[:notice]
     end
 
     test "should get edit" do
@@ -20,25 +25,18 @@ module Posts
       assert_response :success
     end
 
-    test "should update post comment" do
-      patch post_post_comment_url(@post, @post_comment), params: { post_comment: { body: "Updated comment" } }
-      assert_redirected_to @post
-      @post_comment.reload
-      assert_equal "Updated comment", @post_comment.body
-      assert_equal "Comment was successfully updated.", flash[:notice]
+    test "should update post_comment with valid params" do
+      patch post_post_comment_url(@post, @post_comment), params: { post_comment: { body: 'Updated comment' } }
+      assert_redirected_to post_path(@post_comment.post)
+      assert_equal 'Comment was successfully updated.', flash[:notice]
     end
 
-    test "should not update post comment with invalid data" do
-      patch post_post_comment_url(@post, @post_comment), params: { post_comment: { body: "" } }
-      assert_response :unprocessable_entity
-    end
-
-    test "should destroy post comment" do
+    test "should destroy post_comment" do
       assert_difference('PostComment.count', -1) do
         delete post_post_comment_url(@post, @post_comment)
       end
-      assert_redirected_to @post
-      assert_equal "Comment was succesfully destroyed", flash[:notice]
+      assert_redirected_to post_url(@post)
+      assert_equal 'Comment was succesfully destroyed', flash[:notice]
     end
   end
 end

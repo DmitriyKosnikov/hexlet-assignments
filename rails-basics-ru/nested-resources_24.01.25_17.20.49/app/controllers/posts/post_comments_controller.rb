@@ -1,16 +1,7 @@
 module Posts
   class PostCommentsController < ApplicationController
-    before_action :set_post, only: %i[ index new create ]
-    before_action :set_post_comment, only: %i[ show edit update destroy ]
-
-    # GET /post_comments or /post_comments.json
-    def index
-      @post_comments = @post.post_comments
-    end
-
-    # GET /post_comments/1 or /post_comments/1.json
-    def show
-    end
+    before_action :set_post, only: %i[ new create ]
+    before_action :set_post_comment, only: %i[ edit update destroy ]
 
     # GET /post_comments/new
     def new
