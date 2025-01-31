@@ -1,0 +1,39 @@
+---
+en:
+  posts:
+    index:
+      actions:
+        actions_title: Actions
+        edit: Edit
+        destroy: Destroy
+        destroy_confirm: Are you sure?
+        show: Show
+      body: Body
+      comments_title: Comments
+      comments_count:
+        one: 1 comment
+        other: "%{count} comments"
+        zero: No comments
+      title: title
+      new_post: New Post
+    new_post: New Post
+    edit:
+      title: Edit
+    show:
+      body: Body
+      comments: Comments
+    update:
+      success: Post was updated.
+    create:
+      success: Post was created.
+    destroy:
+      success: Post was destroyed.
+    comments:
+      edit:
+        title: Editing comment
+
+      create:
+        success: Comment was created.
+
+      update:
+        success: Comment was updated.

@@ -1,0 +1,42 @@
+---
+ru:
+  posts:
+    index:
+      actions:
+        actions_title: Действия
+        edit: Изменить
+        destroy: Удалить
+        destroy_confirm: Вы уверены?
+        show: Показать
+      body: Статья
+      comments_title: Комментарии
+      comments_count:
+        one: 1 комментарий
+        other: "%{count} комментария"
+        zero: No comments
+        few: "%{count} комментария"
+        many: "%{count} комментариев"
+      title: Заголовок
+      new_post: Новый пост
+    new_post: Новый пост
+    edit:
+      title: Изменить
+    show:
+      body: Статья
+      comments: Комментарии
+    update:
+      success: Пост обновлен.
+    create:
+      success: Пост создан.
+    destroy:
+      success: Пост удален.
+
+    comments:
+      edit:
+        title: Изменить комментарий
+
+      create:
+        success: Комментарий создан.
+
+      update:
+        success: Комментарий обновлен.
