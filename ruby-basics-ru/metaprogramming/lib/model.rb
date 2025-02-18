@@ -1,20 +1,11 @@
 # frozen_string_literal: true
 
 # BEGIN
-require 'date' 
+require 'date'
 
 module Model
   def self.included(base)
     base.extend(ClassMethods)
-  end
-
-  def initialize(attributes = {})
-    self.class.attributes.each do |name, options|
-      value = attributes.key?(name) ? attributes[name] : options[:default]
-      converted_value = value.nil? ? nil : convert_type(value, options[:type])
-      instance_variable_set("@#{name}", converted_value)
-      instance_variable_set("@#{name}_set", attributes.key?(name))
-    end
   end
 
   module ClassMethods
@@ -39,21 +30,37 @@ module Model
     end
   end
 
+  def initialize(attrs = {})
+    self.class.attributes.each do |name, options|
+      value = attrs.key?(name) ? attrs[name] : options[:default]
+      converted_value = value.nil? ? nil : convert_type(value, options[:type])
+      instance_variable_set("@#{name}", converted_value)
+      instance_variable_set("@#{name}_set", attrs.key?(name))
+    end
+  end
+
+  def attributes
+    self.class.attributes.each_with_object({}) do |(name, _), hash|
+      hash[name] = instance_variable_get("@#{name}")
+    end
+  end
+
   private
+
   def convert_type(value, type)
     return nil if value.nil?
 
     case type
+    when :boolean
+      !!value
+    when :datetime
+      DateTime.parse(value) rescue nil
     when :integer
       value.to_i
     when :string
       value.to_s
-    when :boolean
+    else
       value
-    when :nil
-      value
-    when :datetime
-      DateTime.parse(value)
     end
   end
 end
