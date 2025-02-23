@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2022_09_19_155610) do
+ActiveRecord::Schema[7.2].define(version: 2025_02_23_215409) do
   create_table "vacancies", force: :cascade do |t|
     t.string "title"
     t.string "description"
     t.string "assm_state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "aasm_state"
   end
 end

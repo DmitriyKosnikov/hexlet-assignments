@@ -3,6 +3,10 @@
 class Vacancy < ApplicationRecord
   include AASM
 
+  aasm do
+  end
+  include AASM
+
   validates :title, presence: true
   validates :description, presence: true
 
