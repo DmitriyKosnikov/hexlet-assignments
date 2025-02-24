@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   def index
     # BEGIN
     @q = Post.ransack(params[:q])
-    @q.result
+    @posts = @q.result
     # END
   end
 

@@ -6,9 +6,9 @@
 .p-3.bg-light
   / BEGIN
   = search_form_for @q do |f|
-    f.input :title_cont, 'Search by Title'
-    f.submit, 'Search'
-    f.sort_link @q, :aasm_state, 'State'
+    = f.input :title_cont, placeholder: 'Search by Title'
+    = f.input :aasm_state_eq, as: :select, collection: Post.aasm.states.map(&:name)
+    = f.submit 'Search'
   / END
 
 table.table.table-striped.table-hover.mb-5
