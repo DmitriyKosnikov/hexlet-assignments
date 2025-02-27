@@ -1,0 +1,5 @@
+html
+  body
+    h1 = t('user_mailer.account_activation.congratulation', user_name: @user.name)
+    p = t('user_mailer.account_activation.welcome_text')
+    a href="http://hexlet.test/user/confirm?confirmation_token=#{@user.confirmation_token}" = t('user_mailer.account_activation.confirm')
