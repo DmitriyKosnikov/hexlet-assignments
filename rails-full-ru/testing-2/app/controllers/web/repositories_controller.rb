@@ -29,7 +29,7 @@ class Web::RepositoriesController < Web::ApplicationController
 
     @repository = Repository.new(
       link: repostirory_data.html_url,
-      owner_name: repostirory_data.owner.name,
+      owner_name: repostirory_data.owner.login,
       repo_name: repostirory_data.name,
       description: repostirory_data.description,
       default_branch: repostirory_data.default_branch,

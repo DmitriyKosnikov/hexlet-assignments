@@ -9,12 +9,12 @@ class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
   end
   test "should create repository" do
     data = JSON.parse(load_fixture('files/response.json'))
-    stub_request(:any, @repo_url).to_return(status: 200, body: data.to_json)
+    stub_request(:any, @repo_url).to_return(status: 200, body: data.to_json, headers: { 'Content-Type' => 'application/json' } )
 
     post repositories_url, params: { repository: { link: @repo_url } }
     repo = Repository.last
     assert_redirected_to repository_url(repo)
-
+    debugger
     assert_equal data["html_url"], repo.link
     assert_equal data["owner"]["login"], repo.owner_name
     assert_equal data["name"], repo.repo_name
